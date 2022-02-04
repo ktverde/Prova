@@ -8,38 +8,51 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        //Variaveis
+        Sistema sis = new Sistema();
+        sis.cadastraUsuarios();
         Scanner teclado = new Scanner(System.in);
         LocalTime hora;
         Login login;
+
+        //Pede a entrada do usuário, até ser lida corretamente
         while (true) {
             System.out.println("Digite seu usuário: ");
             String usuario = teclado.next();
             System.out.println("Digite sua senha: ");
             String senha = teclado.next();
 
+            //Bloco try catch para tratar exceçoes de login.
             try {
-                login = new Login(usuario, senha);
+                login = new Login(sis,usuario, senha);
                 hora = LocalTime.now();
 
-                DateTimeFormatter meuFormato = DateTimeFormatter.ofPattern("HH:mm:ss");
-                System.out.println(hora.format(meuFormato));
                 break;
-
-            } catch (LoginFailedException | DateTimeException lfe) {
+            } catch (LoginFailedException | DateTimeException | NullPointerException lfe) {
                 System.out.println(lfe.getMessage());
             }
         }
-        if (hora.getHour() >= 0 && hora.getHour() < 6) {
-            System.out.println("Boa madrugada, " + login.getLogin() + "! Você se logou ao nosso sistema.");
+
+        //Imprime as informações necessarias.
+        DateTimeFormatter meuFormato = DateTimeFormatter.ofPattern("HH:mm:ss");
+        System.out.println("+---------------+");
+        System.out.println("|   "+hora.format(meuFormato)+"    |");
+        System.out.println("+---------------+");
+
+        String nome = sis.getLogin()[login.getPos()];
+        int horaAtual = hora.getHour();
+
+        if (horaAtual >= 0 && hora.getHour() < 6) {
+            System.out.println("Boa madrugada, " + nome + "! Você se logou ao nosso sistema.");
         }
-        else if (hora.getHour() >= 6 && hora.getHour() < 12){
-            System.out.println("Bom dia, "+ login.getLogin() + "! Você se logou ao nosso sistema.");
+        else if (horaAtual >= 6 && hora.getHour() < 12){
+            System.out.println("Bom dia, "+ nome + "! Você se logou ao nosso sistema.");
         }
-        else if(hora.getHour() >= 12 && hora.getHour() < 18){
-            System.out.println("Boa tarde, "+ login.getLogin() + "! Você se logou ao nosso sistema.");
+        else if(horaAtual >= 12 && hora.getHour() < 18){
+            System.out.println("Boa tarde, "+ nome + "! Você se logou ao nosso sistema.");
         }
         else{
-            System.out.println("Boa noite, "+ login.getLogin() + "! Você se logou ao nosso sistema.");
+            System.out.println("Boa noite, "+ nome + "! Você se logou ao nosso sistema.");
         }
     }
 
