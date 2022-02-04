@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class QuizManager
 {
     private int pontuacao, erros, opcao;
+    private String nome;
 
     public QuizManager(int opcao) {
         this.opcao = opcao;
@@ -54,4 +55,9 @@ public class QuizManager
     public int getOpcao() { return this.opcao; }
     public int getPontuacao() { return this.pontuacao; }
     public int getErros() { return this.erros; }
+    public String getNome() { return nome; }
+
+    //Sets
+/////////////////////////////////////////////////////////////////////////
+    public void setNome(String nome) { this.nome = nome; }
 }

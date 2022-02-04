@@ -44,6 +44,7 @@ public class Main
                 else if(opcao > 0 && opcao < 5){
                     Perguntas p = new Perguntas(opcao);
                     p.questionsGenerator();
+                    p.setNome(nome);
                     p.Quiz(p);
                     return p;
                 }
@@ -62,11 +63,11 @@ public class Main
         //Função retorna um objeto perguntas, onde vou coletar os acertos e os erros daquele objeto.
         Perguntas p = Menu();
         System.out.format("""
-                        ===================================================
-                        |        AEEE você acertou  %d e errou %d           |
-                        ===================================================
-                        |          Obrigado por participar!! :)           |
-                        ===================================================""", p.getPontuacao(), p.getErros());
+                        =====================================================
+                              AEEE %s, você acertou %d e errou %d          
+                        =====================================================
+                                   Obrigado por participar!! :)           
+                        =====================================================""",p.getNome(), p.getPontuacao(), p.getErros());
 
 
 
