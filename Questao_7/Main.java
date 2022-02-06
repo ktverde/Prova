@@ -39,6 +39,7 @@ public class Main {
         System.out.println("|   "+hora.format(meuFormato)+"    |");
         System.out.println("+---------------+");
 
+        //Coleta o nome do usuario a partir da posição em que foi encontrado o usuário, dentro da lista cadastrada no sistema.
         String nome = sis.getLogin()[login.getPos()];
         int horaAtual = hora.getHour();
 

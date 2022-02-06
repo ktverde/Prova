@@ -10,9 +10,11 @@ public class Login extends Sistema
         boolean check = false;
         //Loop pelo vetor de usuarios no sistema. Caso algum desses usuarios seja igual ao passado como parametro para o construtor
         //Sai do laço.
-        for(int i=0; i<sis.getLogin().length; i++){
+        int tam = sis.getLogin().length;
+        for(int i=0; i<tam; i++){
             if (sis.getLogin()[i].equals(login) && sis.getSenha()[i].equals(senha)) {
                 check = true;
+                //Guarda a posição q foi achado o usuario para usos futuros.
                 this.pos = i;
                 break;
             }
